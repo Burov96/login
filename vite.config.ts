@@ -3,9 +3,5 @@ import react from '@vitejs/plugin-react-swc'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/login/',
-  // build: {
-  //   assetsDir: 'assets',
-  //   outDir: 'dist'
-  // }
+  base: './',
 })
