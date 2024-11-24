@@ -1,0 +1,92 @@
+$bg-color: #ffff;
+$smallWidth: 500px;
+
+$small: 965px;
+$medium: 1062px;
+$large: 1280px;
+
+@mixin bg-opacity($color, $opacity, $blur: 0) {
+  --bg-opacity: #{$opacity};
+  -webkit-backdrop-filter: blur(#{$blur}px);
+  backdrop-filter: blur(#{$blur}px);
+  background-color: rgba($color, var(--bg-opacity));
+}
+
+.miniNavbarToHome {
+  z-index: 3;
+  position: absolute;
+  width: 450px;
+  @media (max-width: $smallWidth) {
+    width: 300px;
+    height: 130px;
+  }
+
+  height: 140px;
+  top: 30px;
+  left: 0;
+}
+
+.outerDiv {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/background_upscaled4x.jpg");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    @media (max-width: $small) {
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (min-width: $small) {
+      width: 110%;
+      height: 110%;
+    }
+
+    @media (min-width: $medium) {
+      width: 120%;
+      height: 120%;
+    }
+
+    @media (min-width: $large) {
+      width: 130%;
+      height: 130%;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+    @include bg-opacity($bg-color, 0, 0);
+    z-index: -1;
+  }
+
+  &:focus-within {
+    & + .miniNavbarToHome {
+      display: none;
+    }
+
+    &::after {
+      @include bg-opacity($bg-color, 0.3, 2);
+    }
+  }
+}

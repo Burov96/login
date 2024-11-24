@@ -1,0 +1,83 @@
+@mixin responsive($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin bg-opacity($color, $opacity) {
+  --bg-opacity: #{$opacity};
+  background-color: rgba($color, var(--bg-opacity));
+}
+
+$small: 965px;
+$medium: 1062px;
+$large: 1280px;
+$primary-color: #074d92;
+$accent-color: #8e75e4;
+
+.outer-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 120vw;
+  height: 100vh;
+}
+
+.login-form-outerbox {
+  transition: border 0.3s ease, background-color 0.5s linear;
+  &:focus-within {
+    border: 1px outset $accent-color;
+    @include bg-opacity($primary-color, 0.8);
+  }
+  border-radius: 6%;
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 10rem;
+  justify-items: center;
+  align-items: center;
+  @include bg-opacity($primary-color, 0.85);
+  @media (max-width: $small) {
+    scale: 1.2;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 9rem;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 1rem;
+  input {
+    width: 9rem;
+    @media (max-width: $small) {
+    width: 12rem;
+    height: 1.5rem;      
+    }
+    margin-block: 5px;
+  }
+  button {
+    margin-top: 1rem;
+    background-color: lighten($primary-color, 25%) ;
+    color: white;
+    font-size: medium;
+    border: 0;
+    border-radius: 10%;
+    padding-inline: 8px;
+    padding: 6px;
+    font-family: "Courier New", Courier, monospace;
+    transition: background-color 0.4s ease;
+    &:disabled {
+      background-color: #bdc3c7;
+    }
+    &:not(:disabled):hover {
+      background-color: darken( $primary-color, 7%);
+    }
+    &:focus-within {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
