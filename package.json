@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "dev": "vite",
-    "build": "vite build",
-    "deploy": "gh-pages -d dist",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+    "predeploy": "bun run build",
+    "dev": "bunx vite", 
+    "build": "bunx vite build", 
+    "deploy": "bunx gh-pages -d dist", 
+    "lint": "bunx eslint .", 
+    "preview": "bunx vite preview" 
+    },
   "dependencies": {
     "@dotlottie/react-player": "^1.6.19",
     "react": "^18.3.1",
